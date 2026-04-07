@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASH Apparel - Quality Menswear at an Excellent Price</title>
+  <meta name="description" content="ASH Apparel - wholesale menswear blanks out of Los Angeles. Hoodies, tees, and long sleeves for screen printers and distributors.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #000000;
+      --dark: #0a0a0a;
+      --dark-gray: #141414;
+      --mid-gray: #1a1a1a;
+      --light-gray: #a0a0a0;
+      --white: #ffffff;
+      --red: #c41e2a;
+      --red-hover: #e02535;
+      --red-dark: #8b1520;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(196, 30, 42, 0.2);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--light-gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--black);
+      z-index: 1;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--dark);
+      /* Subtle textile texture pattern */
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.01) 2px,
+          rgba(255,255,255,0.01) 4px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.01) 2px,
+          rgba(255,255,255,0.01) 4px
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      letter-spacing: 0.12em;
+      line-height: 0.9;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 .accent {
+      color: var(--red);
+    }
+
+    .hero-line {
+      width: 60px;
+      height: 3px;
+      background: var(--red);
+      margin: 1.5rem auto;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--light-gray);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--red);
+      color: var(--white);
+      background: transparent;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .btn-filled {
+      background: var(--red);
+    }
+
+    .btn-filled:hover {
+      background: var(--red-hover);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--light-gray);
+    }
+
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--red);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+      line-height: 1.1;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--dark);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--light-gray);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 2rem;
+      border: 1px solid rgba(196, 30, 42, 0.2);
+      background: var(--black);
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--light-gray);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    /* ── COLLECTION ── */
+    .collection {
+      background: var(--black);
+    }
+
+    .collection-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--dark);
+      border: 1px solid var(--mid-gray);
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .product-card:hover {
+      border-color: var(--red);
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      aspect-ratio: 4 / 5;
+      background: var(--mid-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image svg {
+      width: 64px;
+      height: 64px;
+      stroke: rgba(255,255,255,0.1);
+      stroke-width: 1;
+      fill: none;
+    }
+
+    .product-category {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-style {
+      font-size: 0.8rem;
+      color: var(--red);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--light-gray);
+      line-height: 1.6;
+    }
+
+    .product-specs {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--mid-gray);
+    }
+
+    .spec {
+      font-size: 0.75rem;
+      color: var(--light-gray);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .spec strong {
+      color: var(--white);
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.15rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--dark);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(196, 30, 42, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--red);
+      fill: none;
+    }
+
+    .contact-item a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover {
+      color: var(--red);
+    }
+
+    .contact-note {
+      color: var(--light-gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-top: 2rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      background: var(--black);
+      border: 1px solid var(--mid-gray);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      padding: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--red);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: #555;
+    }
+
+    .contact-form textarea {
+      height: 140px;
+      resize: vertical;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--mid-gray);
+      font-size: 0.8rem;
+      color: #555;
+      letter-spacing: 0.04em;
+    }
+
+    footer span {
+      color: var(--red);
+    }
+
+    /* ── FADE-IN ANIMATION ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(12px);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid rgba(196, 30, 42, 0.2);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">ASH<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1><span class="accent">ASH</span> APPAREL</h1>
+      <div class="hero-line"></div>
+      <p>Quality menswear at an excellent price.</p>
+      <a href="#collection" class="btn">View the Collection</a>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title">Los Angeles Since 2020</h2>
+          <p>Established in 2020, ASH Apparel began with a vision to support the local Los Angeles apparel community with better menswear blanks. In just a few years, we've grown to support a network of over 100 independent screen printers and distributors who rely on us for the "best bang for their buck."</p>
+          <p>We understand the hustle of the apparel industry. That's why we focus on delivering garments that are not only premium in feel but also priced to keep your business competitive. At ASH, you're a partner. We thrive on personal relationships and work one-on-one with our customers to ensure our blanks meet their exact specifications.</p>
+        </div>
+        <div class="about-stats fade-in">
+          <div class="stat">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Partners</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">2020</div>
+            <div class="stat-label">Established</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">LA</div>
+            <div class="stat-label">Based</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">1:1</div>
+            <div class="stat-label">Service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECTION -->
+  <section class="collection" id="collection">
+    <div class="section-inner">
+      <div class="collection-header fade-in">
+        <div class="section-label">The Collection</div>
+        <h2 class="section-title">The Blanks</h2>
+      </div>
+      <div class="products-grid">
+
+        <!-- Hoodie -->
+        <div class="product-card fade-in">
+          <div class="product-image">
+            <span class="product-category">Hoodies</span>
+            <svg viewBox="0 0 64 64" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12 L12 22 L12 32 L18 32 L18 52 L46 52 L46 32 L52 32 L52 22 L42 12 Z"/>
+              <path d="M26 12 C26 8 32 4 32 4 C32 4 38 8 38 12"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Heavy Weight Fleece Hoodie</div>
+            <div class="product-style">Style 3090</div>
+            <p class="product-desc">8oz heavy weight fleece. Holds up to heavy printing, soft hand-feel. The one our printers keep coming back for.</p>
+            <div class="product-specs">
+              <div class="spec"><strong>8 oz</strong>Weight</div>
+              <div class="spec"><strong>Heavy</strong>Weight Class</div>
+              <div class="spec"><strong>Fleece</strong>Material</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- T-Shirt -->
+        <div class="product-card fade-in">
+          <div class="product-image">
+            <span class="product-category">T-Shirts</span>
+            <svg viewBox="0 0 64 64" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 12 L10 20 L16 24 L16 52 L48 52 L48 24 L54 20 L44 12 Z"/>
+              <path d="M24 12 C24 8 32 6 32 6 C32 6 40 8 40 12"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">ASH PRO Tee</div>
+            <div class="product-style">Style 1110</div>
+            <p class="product-desc">5.5oz mid-weight tee. Good for screen printing, DTG, you name it. This is the one that does the work.</p>
+            <div class="product-specs">
+              <div class="spec"><strong>5.5 oz</strong>Weight</div>
+              <div class="spec"><strong>Mid</strong>Weight Class</div>
+              <div class="spec"><strong>Cotton</strong>Material</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Long Sleeve -->
+        <div class="product-card fade-in">
+          <div class="product-image">
+            <span class="product-category">Long Sleeves</span>
+            <svg viewBox="0 0 64 64" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12 L6 24 L12 28 L14 52 L50 52 L52 28 L58 24 L42 12 Z"/>
+              <path d="M26 12 C26 8 32 6 32 6 C32 6 38 8 38 12"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Long Sleeve Tee</div>
+            <div class="product-style">Style 3025 &amp; 3020</div>
+            <p class="product-desc">Same 5.5oz mid-weight as the PRO Tee, in long sleeve. Comes in crew (3025) and hooded (3020).</p>
+            <div class="product-specs">
+              <div class="spec"><strong>5.5 oz</strong>Weight</div>
+              <div class="spec"><strong>Mid</strong>Weight Class</div>
+              <div class="spec"><strong>2 Styles</strong>Crew &amp; Hooded</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <div class="section-label">Contact</div>
+          <h2 class="section-title">Start a Wholesale Order</h2>
+          <h3>Wholesale Inquiries</h3>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="22,4 12,13 2,4"/>
+              </svg>
+            </div>
+            <a href="mailto:Info@ash-apparel.com">Info@ash-apparel.com</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <a href="tel:+13234579141">(323) 457-9141</a>
+          </div>
+          <p class="contact-note">Please contact us! Send us an email about what products you may be interested in. We love meeting new people and always wish to grow and prosper new business relationships.</p>
+        </div>
+        <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="company" placeholder="Company (optional)">
+          <textarea name="message" placeholder="Tell us about what you're looking for..." required></textarea>
+          <button type="submit" class="btn btn-filled">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 ASH Apparel. All rights reserved. <span>Los Angeles, CA.</span>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Contact form handler (mailto fallback)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      const company = form.company.value;
+      const message = form.message.value;
+      const subject = encodeURIComponent('Wholesale Inquiry from ' + name);
+      const body = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Email: ' + email + '\n' +
+        (company ? 'Company: ' + company + '\n' : '') +
+        '\n' + message
+      );
+      window.location.href = 'mailto:Info@ash-apparel.com?subject=' + subject + '&body=' + body;
+    }
+  </script>
+
+</body>
+</html>
